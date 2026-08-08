@@ -1,0 +1,263 @@
+/* =========================
+   GLOBAL QUIZ
+========================= */
+
+/* conteneur principal */
+.quiz-page {
+    max-width: 900px;
+    margin: auto;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* =========================
+   TITRE
+========================= */
+
+h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+}
+
+.quiz-page p {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   QUIZ BOX (style jeu)
+========================= */
+
+#quiz-container {
+    background-color: rgba(44, 44, 44, 0.8);
+    border: 3px solid #ff7e5f;
+    backdrop-filter: blur(8px);
+
+    border-radius: 20px;
+    padding: 40px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.10);
+
+    transition: all 0.3s ease;
+
+    min-height: 300px;
+
+    margin-top: 15px;
+}
+
+
+/* animation légère */
+#quiz-container:hover {
+    transform: translateY(-3px);
+}
+
+.quiz-timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ff9800;
+}
+
+.time-out-message {
+    margin-top: 20px;
+    color: #e53935;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* =========================
+   QUESTION
+========================= */
+
+#question-box h3 {
+    font-size: 1.6em;
+    margin-bottom: 25px;
+    color: white;
+}
+
+/* =========================
+   REPONSES (style boutons jeu)
+========================= */
+
+#answers-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+#answers-box button {
+    padding: 12px 18px;
+    border-radius: 12px;
+
+    border: 2px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+
+    font-size: 1em;
+    font-weight: bold;
+
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+
+    transition: all 0.25s ease;
+}
+
+#answers-box button:hover {
+    border-color: #ff7e5f;
+    transform: scale(1.03);
+    background: rgba(255, 126, 95, 0.15);
+}
+
+.correct {
+    background: #28a745 !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+.wrong {
+    background: #dc3545 !important;
+    color: white !important;
+}
+
+/* =========================
+   BOUTON NEXT
+========================= */
+
+#next-btn {
+    margin-top: 25px;
+}
+
+/* cohérence avec ton site */
+.btn-primary {
+    background: #ff7e5f;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.25s ease;
+}
+
+.btn-primary:hover {
+    background: #e96a4f;
+    transform: translateY(-2px);
+}
+
+/* bleu secondaire */
+.btn-secondary {
+    background: #007bff;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-secondary:hover {
+    background: #0056b3;
+}
+
+/* =========================
+   RESULTAT
+========================= */
+
+.result-box {
+    background-color: rgba(44, 44, 44, 0.8);
+    border: 3px solid #ff7e5f;
+    backdrop-filter: blur(8px);
+
+    padding: 40px;
+    border-radius: 20px;
+
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+
+    text-align: center;
+
+    animation: pop 0.3s ease;
+}
+
+.result-box h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.result-box p {
+    color: white;
+}
+
+/* animation résultat */
+@keyframes pop {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   PROGRESSION QUIZ
+========================= */
+
+#progress {
+    margin: 15px auto 20px auto;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 12px;
+
+    margin-top: 10px;
+
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 126, 95, 0.3);
+
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0%;
+
+    background: linear-gradient(90deg, #ff7e5f, #ffb199);
+
+    border-radius: 50px;
+
+    transition: width 0.4s ease;
+
+    box-shadow: 0 0 10px rgba(255, 126, 95, 0.6);
+
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px rgba(255,126,95,0.4); }
+    to { box-shadow: 0 0 15px rgba(255,126,95,0.9); }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    #quiz-container {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+}

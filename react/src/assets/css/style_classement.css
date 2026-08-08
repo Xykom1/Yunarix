@@ -1,0 +1,64 @@
+/* container */
+.leaderboard-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+/* FILTRE */
+.filter-box {
+    margin-bottom: 25px;
+}
+
+.filter-box select {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid #ff7e5f;
+    background: rgba(255,255,255,0.8);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* TABLE */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    background: rgba(44, 44, 44, 0.85);
+    border-radius: 15px;
+    overflow: hidden;
+
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.leaderboard-table th {
+    background: #ff7e5f;
+    padding: 15px;
+    font-size: 1em;
+}
+
+.leaderboard-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.leaderboard-table tr:hover {
+    background: rgba(255, 126, 95, 0.1);
+    transition: 0.2s;
+}
+
+.score {
+    font-weight: bold;
+    color: #ff7e5f;
+}

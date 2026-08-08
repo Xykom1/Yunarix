@@ -1,0 +1,142 @@
+/* container */
+.profile-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* HEADER PROFIL */
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    margin-bottom: 40px;
+}
+
+.avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #ff7e5f;
+    object-fit: cover;
+}
+
+.info h1 {
+    margin: 0;
+}
+
+/* STATS */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: rgba(44, 44, 44, 0.85);
+    color: white;
+
+    padding: 20px;
+    border-radius: 15px;
+
+    min-width: 180px;
+
+    border: 2px solid #ff7e5f;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+/* BADGES */
+.badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.badge-card {
+    width: 180px;
+    background: rgba(44, 44, 44, 0.85);
+    color: white;
+
+    padding: 20px;
+    border-radius: 15px;
+
+    border: 2px solid #ff7e5f;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.badge-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.badge-card h3 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    color: white;
+}
+
+.badge-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+/* Pastille de rareté */
+.badge-card span {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    background: rgba(255, 126, 95, 0.2);
+    color: #ff7e5f;
+    border: 1px solid #ff7e5f;
+}
+
+/* Couleurs par rareté */
+.badge-card.bronze {
+    border-color: #cd7f32;
+}
+.badge-card.bronze span {
+    background: rgba(205, 127, 50, 0.15);
+    color: #e0995c;
+    border-color: #cd7f32;
+}
+
+.badge-card.silver {
+    border-color: #c0c0c0;
+}
+.badge-card.silver span {
+    background: rgba(192, 192, 192, 0.15);
+    color: #d9d9d9;
+    border-color: #c0c0c0;
+}
+
+.badge-card.gold {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+}
+.badge-card.gold span {
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffd700;
+    border-color: #ffd700;
+}

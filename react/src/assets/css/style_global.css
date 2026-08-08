@@ -1,0 +1,22 @@
+body {
+    background-image: url(../Images/anime.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #1e1e1e;
+}
+
+.site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(2px);
+}
+
+main {
+    flex: 1;
+}
