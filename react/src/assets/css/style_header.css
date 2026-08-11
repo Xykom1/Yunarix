@@ -1,8 +1,17 @@
+/* ============================================
+   HEADER - Design modernisé
+   ============================================ */
+
 header {
-    border-bottom: 3px solid #ff7e5f;
-    background-color: rgba(44, 44, 44, 0.8);
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.92), rgba(44, 44, 44, 0.85));
+    border-bottom: 1px solid rgba(255, 126, 95, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     z-index: 1000;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    padding: 12px 0;
 }
 
 header .container {
@@ -10,12 +19,34 @@ header .container {
     justify-content: space-between;
     align-items: center;
     width: 1200px;
+    max-width: 95%;
     margin: 0 auto;
+    gap: 20px;
+}
+
+/* ============================================
+   LOGO
+   ============================================ */
+
+header .container > a {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+header .container > a:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(255, 126, 95, 0.5));
 }
 
 img {
-    height: 90px;
+    height: 75px;
+    transition: height 0.3s ease;
 }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
 
 nav {
     flex: 1;
@@ -28,7 +59,7 @@ nav ul {
     justify-content: center;
     margin: 0;
     padding: 0;
-    gap: 20px;
+    gap: 35px;
 }
 
 nav ul li {
@@ -36,18 +67,91 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    position: relative;
+    color: #f0f0f0;
     text-decoration: none;
     font-size: 1.1em;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-    padding-bottom: 5px;
-    border-bottom: 2px solid transparent;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 8px 4px;
+    transition: color 0.3s ease;
+}
+
+/* Soulignement animé (glissement depuis la gauche) */
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #007bff, #ff7e5f);
+    border-radius: 2px;
+    transition: width 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
+    color: #4da3ff;
 }
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   BOUTONS AUTH (Inscription / Connexion)
+   ============================================ */
+
+.auth-links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+
+.auth-links a {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-size: 0.95em;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+}
+
+/* Bouton "Inscription" - style outline */
+.auth-links a:first-child {
+    color: #f0f0f0;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.auth-links a:first-child:hover {
+    color: #ffffff;
+    border-color: #007bff;
+    background: rgba(0, 123, 255, 0.15);
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Bouton "Connexion" - style plein dégradé */
+.auth-links a:last-child {
+    color: #ffffff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.35);
+}
+
+.auth-links a:last-child:hover {
+    background: linear-gradient(135deg, #1a8aff, #0066cc);
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   MENU PROFIL
+   ============================================ */
 
 .profile-menu {
     position: relative;
@@ -55,42 +159,75 @@ nav ul li a:hover {
     color: white;
 }
 
-/* Style de l'icône de profil */
+/* Icône de profil */
 #profile-icon {
-    font-size: 30px;
+    font-size: 32px;
     cursor: pointer;
+    color: #f0f0f0;
+    border-radius: 50%;
+    padding: 6px;
+    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#profile-icon:hover {
+    color: #4da3ff;
+    transform: scale(1.1);
+    background-color: rgba(0, 123, 255, 0.15);
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.3);
 }
 
 /* Contenu du menu déroulant */
 .dropdown-content {
     position: absolute;
-    top: 35px;
-    right: -75px;
-    background-color: #333;
-    /* Fond sombre pour correspondre au thème */
+    top: 48px;
+    right: -10px;
+    background: rgba(40, 40, 40, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: white;
-    /* Texte en blanc pour contraster */
-    min-width: 170px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    border-radius: 5px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     overflow: hidden;
-    padding: 0;
+    padding: 8px;
     margin: 0;
+    list-style: none;
+
+    /* Animation d'apparition */
+    animation: dropdownFadeIn 0.25s ease forwards;
+    transform-origin: top right;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .dropdown-content li {
     list-style-type: none;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .dropdown-content li a,
 .dropdown-content li .logout-button {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     width: 100%;
-    padding: 12px 16px;
-    color: white;
+    padding: 12px 14px;
+    color: #e8e8e8;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    font-size: 0.95em;
+    transition: background-color 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
 
     /* Reset du bouton */
     background: none;
@@ -102,81 +239,176 @@ nav ul li a:hover {
 
 .dropdown-content li a:hover,
 .dropdown-content li .logout-button:hover {
-    background-color: #007bff;
-    /* Couleur de fond au survol */
+    background-color: rgba(0, 123, 255, 0.2);
+    color: #ffffff;
+    padding-left: 18px;
 }
 
-
-
-.auth-links {
-    display: flex;
-    justify-content: right;
-    gap: 20px;
+/* Séparateur avant "Déconnexion" */
+.dropdown-content li:last-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 6px;
+    padding-top: 6px;
+    border-radius: 0;
 }
 
-.auth-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1em;
-    transition: color 0.3s ease;
+.dropdown-content li:last-child .logout-button {
+    color: #ff7e5f;
 }
 
-.auth-links a:hover {
-    color: #007bff;
+.dropdown-content li:last-child .logout-button:hover {
+    background-color: rgba(255, 126, 95, 0.15);
+    color: #ff9d85;
 }
+
+/* ============================================
+   MODAL DE DÉCONNEXION
+   ============================================ */
 
 .modal {
     position: fixed;
-    background-attachment: fixed;
     z-index: 999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.64);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.25s ease forwards;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .modal-content {
-    position: absolute;
-    background: rgba(64, 64, 64);
+    background: rgba(50, 50, 50, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 3px solid #007bff;
-    border-left: 3px solid #007bff;
     border-bottom: 3px solid #ff7e5f;
-    border-right: 3px solid #ff7e5f;
     color: white;
-    top: 15%;
-    right: 37%;
-    transform: translateY(-50%);
-    padding: 20px;
-    border-radius: 20px;
+    padding: 30px 35px;
+    border-radius: 16px;
     text-align: center;
-    width: 350px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 380px;
+    max-width: 90%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    animation: modalContentIn 0.3s ease forwards;
+}
+
+@keyframes modalContentIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-content p {
+    font-size: 1.1em;
+    margin: 0 0 20px 0;
+    line-height: 1.5;
 }
 
 .modal-buttons {
     display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5px;
 }
 
 .modal-buttons button {
-    padding: 10px 20px;
+    padding: 12px 28px;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
 }
 
-#confirm-logout, #cancel-logout {
-    background-color: rgba(64, 64, 64, 0.8);
-    border-top: 3px solid #ff7e5f;
-    border-left: 3px solid #ff7e5f;
-    border-bottom: 3px solid #007bff;
-    border-right: 3px solid #007bff;
+#confirm-logout {
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.35);
 }
 
-#confirm-logout:hover, #cancel-logout:hover {
-    background-color: rgba(105, 105, 105, 0.8);
+#confirm-logout:hover {
+    background: linear-gradient(135deg, #1a8aff, #0066cc);
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.5);
+    transform: translateY(-2px);
 }
 
+#cancel-logout {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #e8e8e8;
+}
+
+#cancel-logout:hover {
+    border-color: #ff7e5f;
+    color: #ff9d85;
+    background: rgba(255, 126, 95, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+
+    header .container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    img {
+        height: 60px;
+    }
+
+    nav {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    nav ul {
+        gap: 20px;
+    }
+
+    nav ul li a {
+        font-size: 1em;
+    }
+
+    .auth-links {
+        gap: 10px;
+    }
+
+    .auth-links a {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .dropdown-content {
+        right: -60px;
+    }
+}

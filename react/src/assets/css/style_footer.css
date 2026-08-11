@@ -1,10 +1,16 @@
+/* ============================================
+   FOOTER - Design modernisé
+   ============================================ */
+
 footer {
-    background-color: rgba(44, 44, 44, 0.8);
-    border-top: 3px solid #ff7e5f;
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.92), rgba(44, 44, 44, 0.85));
+    border-top: 1px solid rgba(255, 126, 95, 0.4);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
     position: relative;
     z-index: 1000;
-    backdrop-filter: blur(5px);
-    padding: 20px 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 25px 0;
     width: 100%;
 }
 
@@ -12,25 +18,24 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     padding: 0 40px;
     max-width: 1200px;
     margin: 0 auto;
     color: white;
 }
 
+/* ============================================
+   LIENS DU FOOTER
+   ============================================ */
+
 .footer-links ul {
     list-style: none;
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 25px;
     padding: 0;
     margin: 0;
-}
-
-.footer-separator {
-    height: 20px;
-    width: 1px;
-    background-color: white;
 }
 
 .footer-links ul li {
@@ -38,21 +43,96 @@ footer {
 }
 
 .footer-links ul li a {
-    color: white;
+    position: relative;
+    color: #f0f0f0;
     text-decoration: none;
-    font-size: 1em;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-    padding-bottom: 3px;
-    border-bottom: 2px solid transparent;
+    font-size: 0.95em;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 6px 2px;
+    transition: color 0.3s ease;
+}
+
+/* Soulignement animé (glissement depuis la gauche) */
+.footer-links ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #007bff, #ff7e5f);
+    border-radius: 2px;
+    transition: width 0.3s ease;
 }
 
 .footer-links ul li a:hover {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
+    color: #4da3ff;
 }
+
+.footer-links ul li a:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   SÉPARATEURS
+   ============================================ */
+
+.footer-separator {
+    height: 22px;
+    width: 1px;
+    background: linear-gradient(180deg, #007bff, #ff7e5f);
+    opacity: 0.6;
+    border-radius: 1px;
+}
+
+/* ============================================
+   COPYRIGHT
+   ============================================ */
 
 .footer-copyright p {
     margin: 0;
     font-size: 0.9em;
-    color: #aaaaaa;
+    color: #b8b8b8;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+}
+
+.footer-copyright p:hover {
+    color: #e0e0e0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    footer {
+        padding: 20px 0;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .footer-links ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .footer-links ul li a {
+        font-size: 0.9em;
+    }
+
+    .footer-separator {
+        height: 18px;
+    }
+
+    .footer-copyright p {
+        font-size: 0.85em;
+    }
 }

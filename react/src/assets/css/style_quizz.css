@@ -1,42 +1,66 @@
+/* ============================================
+   QUIZ - Design modernisé
+   ============================================ */
+
 /* =========================
-   GLOBAL QUIZ
+   CONTENEUR PRINCIPAL
 ========================= */
 
-/* conteneur principal */
 .quiz-page {
     max-width: 900px;
     margin: auto;
-    padding: 50px 20px;
+    padding: 60px 20px;
     text-align: center;
+    animation: quizFadeIn 0.4s ease forwards;
+}
+
+@keyframes quizFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================
    TITRE
 ========================= */
 
-h1 {
+.quiz-page h1 {
     font-size: 2.8em;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #4da3ff, #ff9d85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 8px rgba(0, 123, 255, 0.3));
 }
 
 .quiz-page p {
-    color: #555;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 30px;
+    font-size: 1.1em;
 }
 
 /* =========================
-   QUIZ BOX (style jeu)
+   QUIZ BOX
 ========================= */
 
 #quiz-container {
-    background-color: rgba(44, 44, 44, 0.8);
-    border: 3px solid #ff7e5f;
-    backdrop-filter: blur(8px);
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.92), rgba(30, 30, 30, 0.88));
+    border: 1px solid rgba(255, 126, 95, 0.4);
+    border-top: 3px solid #007bff;
+    border-bottom: 3px solid #ff7e5f;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     border-radius: 20px;
     padding: 40px;
 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.10);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
 
     transition: all 0.3s ease;
 
@@ -45,24 +69,49 @@ h1 {
     margin-top: 15px;
 }
 
-
-/* animation légère */
-#quiz-container:hover {
-    transform: translateY(-3px);
-}
+/* =========================
+   TIMER
+========================= */
 
 .quiz-timer {
+    display: inline-block;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 0.5px;
     margin-bottom: 20px;
+    margin-top: 10px;
     color: #ff9800;
+    background: rgba(255, 152, 0, 0.12);
+    border: 1px solid rgba(255, 152, 0, 0.35);
+    padding: 8px 24px;
+    border-radius: 30px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    animation: timerPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(255, 152, 0, 0.15); }
+    50% { box-shadow: 0 0 18px rgba(255, 152, 0, 0.4); }
 }
 
 .time-out-message {
-    margin-top: 20px;
-    color: #e53935;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 28px;
+    background: rgba(229, 57, 53, 0.12);
+    border: 1px solid rgba(229, 57, 53, 0.4);
+    border-radius: 30px;
+    color: #ef5350;
     font-weight: bold;
     font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    animation: timeOutIn 0.4s ease forwards;
+}
+
+@keyframes timeOutIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* =========================
@@ -73,28 +122,31 @@ h1 {
     font-size: 1.6em;
     margin-bottom: 25px;
     color: white;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+    line-height: 1.5;
 }
 
 /* =========================
-   REPONSES (style boutons jeu)
+   RÉPONSES
 ========================= */
 
 #answers-box {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     margin-top: 20px;
 }
 
 #answers-box button {
-    padding: 12px 18px;
-    border-radius: 12px;
+    padding: 14px 20px;
+    border-radius: 14px;
 
-    border: 2px solid rgba(255,255,255,0.1);
+    border: 2px solid rgba(255, 255, 255, 0.12);
     cursor: pointer;
 
     font-size: 1em;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 
     background: rgba(255, 255, 255, 0.08);
     color: white;
@@ -102,102 +154,156 @@ h1 {
     transition: all 0.25s ease;
 }
 
-#answers-box button:hover {
+#answers-box button:hover:not(:disabled) {
     border-color: #ff7e5f;
-    transform: scale(1.03);
+    transform: scale(1.02);
     background: rgba(255, 126, 95, 0.15);
+    box-shadow: 0 6px 18px rgba(255, 126, 95, 0.2);
 }
 
-.correct {
-    background: #28a745 !important;
-    color: white !important;
-    transform: scale(1.05);
+#answers-box button:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
 }
 
-.wrong {
-    background: #dc3545 !important;
+/* Réponse correcte */
+#answers-box .correct {
+    background: linear-gradient(135deg, #28a745, #1e7e34) !important;
     color: white !important;
+    border-color: #28a745 !important;
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    animation: answerPop 0.35s ease forwards;
+}
+
+/* Réponse incorrecte */
+#answers-box .wrong {
+    background: linear-gradient(135deg, #dc3545, #b02a37) !important;
+    color: white !important;
+    border-color: #dc3545 !important;
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+    animation: answerShake 0.35s ease forwards;
+}
+
+@keyframes answerPop {
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1.02); }
+}
+
+@keyframes answerShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
 }
 
 /* =========================
-   BOUTON NEXT
+   BOUTON SUIVANT / REJOUER
 ========================= */
 
 #next-btn {
-    margin-top: 25px;
+    margin-top: 28px;
 }
 
-/* cohérence avec ton site */
 .btn-primary {
-    background: #ff7e5f;
+    background: linear-gradient(135deg, #ff7e5f, #e96a4f);
     color: white;
-    padding: 12px 22px;
-    border-radius: 10px;
+    padding: 14px 30px;
+    border-radius: 25px;
     border: none;
     cursor: pointer;
-    font-weight: bold;
-    transition: 0.25s ease;
+    font-weight: 600;
+    font-size: 1em;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(255, 126, 95, 0.35);
+    margin-top: 10px;
 }
 
 .btn-primary:hover {
-    background: #e96a4f;
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #ff9d85, #ff7e5f);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(255, 126, 95, 0.5);
 }
 
-/* bleu secondaire */
+.btn-primary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 126, 95, 0.3);
+}
+
 .btn-secondary {
-    background: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
-    padding: 12px 22px;
-    border-radius: 10px;
+    padding: 14px 30px;
+    border-radius: 25px;
     border: none;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 1em;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
 }
 
 .btn-secondary:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #1a8aff, #0066cc);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 123, 255, 0.45);
+}
+
+.btn-secondary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
 }
 
 /* =========================
-   RESULTAT
+   RÉSULTAT
 ========================= */
 
 .result-box {
-    background-color: rgba(44, 44, 44, 0.8);
-    border: 3px solid #ff7e5f;
-    backdrop-filter: blur(8px);
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.92), rgba(30, 30, 30, 0.88));
+    border: 1px solid rgba(255, 126, 95, 0.4);
+    border-top: 3px solid #007bff;
+    border-bottom: 3px solid #ff7e5f;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
-    padding: 40px;
+    padding: 50px 40px;
     border-radius: 20px;
 
-    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 
     text-align: center;
 
-    animation: pop 0.3s ease;
+    animation: pop 0.4s ease;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .result-box h2 {
     font-size: 2.2em;
     margin-bottom: 15px;
     color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .result-box p {
     color: white;
+    font-size: 1.2em;
+    margin-bottom: 20px;
 }
 
-/* animation résultat */
+.result-box p strong {
+    color: #ff9d85;
+    font-size: 1.3em;
+    text-shadow: 0 2px 8px rgba(255, 126, 95, 0.4);
+}
+
+/* Animation résultat */
 @keyframes pop {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+    0% { transform: scale(0.9); opacity: 0; }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 /* =========================
@@ -208,44 +314,51 @@ h1 {
     margin: 15px auto 20px auto;
     font-size: 1.1em;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    background: rgba(44, 44, 44, 0.6);
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 126, 95, 0.3);
+    backdrop-filter: blur(8px);
 }
 
 #progress-bar {
     width: 100%;
-    height: 12px;
+    height: 14px;
 
     margin-top: 10px;
 
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 50px;
 
     overflow: hidden;
 
     border: 1px solid rgba(255, 126, 95, 0.3);
 
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 #progress-fill {
     height: 100%;
     width: 0%;
 
-    background: linear-gradient(90deg, #ff7e5f, #ffb199);
+    background: linear-gradient(90deg, #007bff, #ff7e5f);
 
     border-radius: 50px;
 
-    transition: width 0.4s ease;
+    transition: width 0.5s ease;
 
-    box-shadow: 0 0 10px rgba(255, 126, 95, 0.6);
+    box-shadow: 0 0 12px rgba(255, 126, 95, 0.5);
 
     animation: glow 2s infinite alternate;
 }
 
 @keyframes glow {
-    from { box-shadow: 0 0 5px rgba(255,126,95,0.4); }
-    to { box-shadow: 0 0 15px rgba(255,126,95,0.9); }
+    from { box-shadow: 0 0 6px rgba(255, 126, 95, 0.4); }
+    to { box-shadow: 0 0 18px rgba(255, 126, 95, 0.9); }
 }
 
 /* =========================
@@ -253,11 +366,57 @@ h1 {
 ========================= */
 
 @media (max-width: 768px) {
+    .quiz-page {
+        padding: 40px 15px;
+    }
+
+    .quiz-page h1 {
+        font-size: 2.2em;
+    }
+
     #quiz-container {
         padding: 25px;
     }
 
-    h1 {
-        font-size: 2.2em;
+    .result-box {
+        padding: 35px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-page {
+        padding: 30px 10px;
+    }
+
+    .quiz-page h1 {
+        font-size: 1.8em;
+    }
+
+    #quiz-container {
+        padding: 20px;
+        min-height: 250px;
+    }
+
+    #question-box h3 {
+        font-size: 1.3em;
+    }
+
+    #answers-box button {
+        padding: 12px 16px;
+        font-size: 0.95em;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px 24px;
+        font-size: 0.95em;
+    }
+
+    .result-box {
+        padding: 30px 20px;
+    }
+
+    .result-box h2 {
+        font-size: 1.8em;
     }
 }

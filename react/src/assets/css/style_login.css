@@ -1,43 +1,88 @@
+/* ============================================
+   LOGIN - Design modernisé
+   ============================================ */
+
 .form-container-connexion {
-    max-width: 400px;
-    margin: 114px auto;
-    padding: 40px;
-    background-color: rgba(44, 44, 44, 0.8);
-    border-radius: 20px;
-    border: 3px solid #ff7e5f;
+    max-width: 420px;
+    margin: 80px auto;
+    padding: 45px 40px;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.92), rgba(30, 30, 30, 0.88));
+    border-radius: 24px;
+    border: 1px solid rgba(255, 126, 95, 0.4);
+    border-top: 3px solid #007bff;
+    border-bottom: 3px solid #ff7e5f;
     text-align: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
     color: white;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    animation: loginFadeIn 0.4s ease forwards;
+}
+
+@keyframes loginFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .form-container-connexion h2 {
     margin-bottom: 30px;
-    font-size: 2em;
+    font-size: 2.2em;
     color: white;
+    background: linear-gradient(135deg, #4da3ff, #ff9d85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 8px rgba(0, 123, 255, 0.3));
+    position: relative;
+    padding-bottom: 15px;
 }
 
+.form-container-connexion h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff, #ff7e5f);
+    margin: 12px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(255, 126, 95, 0.4);
+}
+
+/* ============================================
+   MESSAGES
+   ============================================ */
+
 .error-message-connexion {
-    background-color: #f8d7da;
+    background-color: rgba(248, 215, 218, 0.95);
     border: 1px solid #f5c6cb;
     color: #721c24;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 12px 15px;
+    border-radius: 10px;
     margin-bottom: 20px;
     text-align: center;
+    font-size: 0.95em;
+    box-shadow: 0 4px 12px rgba(114, 28, 36, 0.15);
 }
 
 .message-creation {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 15px 20px;
+    border-radius: 10px;
     text-align: center;
     margin: 20px auto;
-    width: 80%;
+    width: 85%;
     max-width: 500px;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.3);
     transition: opacity 1s ease-out;
 }
 
@@ -45,8 +90,12 @@
     opacity: 0;
 }
 
+/* ============================================
+   FORMULAIRE
+   ============================================ */
+
 .form-group-connexion {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     text-align: left;
     position: relative;
 }
@@ -54,39 +103,83 @@
 .form-group-connexion label {
     display: block;
     margin-bottom: 8px;
-    font-size: 1em;
-    color: white;
+    font-size: 0.95em;
+    color: #e8e8e8;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .form-group-connexion input[type="text"],
 .form-group-connexion input[type="password"] {
     width: 100%;
-    padding: 12px;
+    padding: 13px 15px;
     font-size: 1em;
-    border: 1px solid #555;
-    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.08);
     color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.form-group-connexion input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .form-group-connexion input:focus {
     border-color: #007bff;
     outline: none;
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), 0 4px 12px rgba(0, 123, 255, 0.15);
 }
 
+/* ============================================
+   BOUTON
+   ============================================ */
+
 .form-button-connexion {
-    padding: 12px 24px;
-    font-size: 1em;
+    padding: 14px 24px;
+    font-size: 1.05em;
+    font-weight: 600;
+    letter-spacing: 0.3px;
     color: white;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     width: 100%;
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.35);
+    margin-top: 5px;
 }
 
 .form-button-connexion:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #1a8aff, #0066cc);
+    box-shadow: 0 10px 28px rgba(0, 123, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.form-button-connexion:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+    .form-container-connexion {
+        margin: 50px 15px;
+        padding: 35px 25px;
+    }
+
+    .form-container-connexion h2 {
+        font-size: 1.8em;
+    }
+
+    .form-button-connexion {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
 }

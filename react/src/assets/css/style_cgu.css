@@ -1,16 +1,16 @@
 /* ============================================
-   MENTIONS LÉGALES - Design modernisé
+   CGU - Design modernisé
    ============================================ */
 
-.legal-page {
+.cgu-page {
     max-width: 900px;
     margin: 60px auto;
     padding: 20px;
     color: white;
-    animation: legalFadeIn 0.4s ease forwards;
+    animation: cguFadeIn 0.4s ease forwards;
 }
 
-@keyframes legalFadeIn {
+@keyframes cguFadeIn {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -21,7 +21,7 @@
     }
 }
 
-.legal-page h1 {
+.cgu-page h1 {
     text-align: center;
     margin-bottom: 50px;
     font-size: 2.5rem;
@@ -33,8 +33,8 @@
     filter: drop-shadow(0 2px 8px rgba(0, 123, 255, 0.3));
 }
 
-/* Cartes en verre, cohérentes avec login / profil */
-.legal-page section {
+/* Cartes en verre, cohérentes avec les autres pages */
+.cgu-page section {
     background: linear-gradient(135deg, rgba(44, 44, 44, 0.9), rgba(30, 30, 30, 0.85));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -48,12 +48,12 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.legal-page section:hover {
+.cgu-page section:hover {
     transform: translateY(-4px);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
-.legal-page h2 {
+.cgu-page h2 {
     margin-bottom: 20px;
     font-size: 1.5rem;
     color: white;
@@ -63,7 +63,7 @@
 }
 
 /* Barre d'accent en dégradé sous les titres */
-.legal-page h2::after {
+.cgu-page h2::after {
     content: "";
     display: block;
     width: 60px;
@@ -74,68 +74,25 @@
     box-shadow: 0 2px 8px rgba(255, 126, 95, 0.4);
 }
 
-.legal-page h3 {
-    margin-top: 25px;
-    margin-bottom: 15px;
-    font-size: 1.15rem;
-    color: #ff7e5f;
-    text-shadow: 0 2px 8px rgba(255, 126, 95, 0.3);
-}
-
-.legal-page p {
+.cgu-page p {
     line-height: 1.7;
     margin-bottom: 15px;
     color: rgba(255, 255, 255, 0.88);
 }
 
-.legal-page ul {
+.cgu-page ul {
     padding-left: 20px;
+    margin-bottom: 15px;
 }
 
-.legal-page li {
-    margin-bottom: 15px;
+.cgu-page li {
+    margin-bottom: 12px;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.88);
 }
 
-/* ============================================
-   CRÉDITS
-   ============================================ */
-
-.credits-list {
-    list-style: none;
-    padding: 0;
-}
-
-.credits-list li {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 126, 95, 0.3);
-    border-left: 3px solid #007bff;
-    padding: 16px 20px;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    color: rgba(255, 255, 255, 0.88);
-    transition: all 0.3s ease;
-}
-
-.credits-list li:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(0, 123, 255, 0.5);
-    transform: translateX(4px);
-    box-shadow: 0 6px 18px rgba(0, 123, 255, 0.15);
-}
-
-.credits-list strong {
-    font-size: 1.1rem;
-    color: white;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* ============================================
-   LIENS
-   ============================================ */
-
-.legal-page a {
+/* Liens */
+.cgu-page a {
     color: #4da3ff;
     text-decoration: none;
     font-weight: 600;
@@ -144,7 +101,7 @@
     transition: color 0.3s ease;
 }
 
-.legal-page a::after {
+.cgu-page a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -156,11 +113,11 @@
     transition: width 0.3s ease;
 }
 
-.legal-page a:hover {
+.cgu-page a:hover {
     color: #ff9d85;
 }
 
-.legal-page a:hover::after {
+.cgu-page a:hover::after {
     width: 100%;
 }
 
@@ -169,41 +126,37 @@
    ============================================ */
 
 @media screen and (max-width: 768px) {
-    .legal-page {
+    .cgu-page {
         margin: 30px auto;
         padding: 15px;
     }
 
-    .legal-page h1 {
+    .cgu-page h1 {
         font-size: 2rem;
         margin-bottom: 30px;
     }
 
-    .legal-page section {
+    .cgu-page section {
         padding: 22px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .legal-page {
+    .cgu-page {
         margin: 20px auto;
         padding: 12px;
     }
 
-    .legal-page h1 {
+    .cgu-page h1 {
         font-size: 1.6rem;
     }
 
-    .legal-page section {
+    .cgu-page section {
         padding: 18px;
         margin-bottom: 18px;
     }
 
-    .legal-page h2 {
+    .cgu-page h2 {
         font-size: 1.25rem;
-    }
-
-    .credits-list li {
-        padding: 13px 15px;
     }
 }

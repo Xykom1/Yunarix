@@ -1,64 +1,215 @@
-/* container */
+/* ============================================
+   CLASSEMENT - Design modernisé
+   ============================================ */
+
+/* ============================================
+   CONTENEUR
+   ============================================ */
+
 .leaderboard-container {
     max-width: 900px;
     margin: auto;
-    padding: 50px 20px;
+    padding: 60px 20px;
     text-align: center;
+    animation: classementFadeIn 0.4s ease forwards;
 }
 
-h1 {
+@keyframes classementFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.leaderboard-container h1 {
     font-size: 2.5em;
+    margin-bottom: 35px;
+    background: linear-gradient(135deg, #4da3ff, #ff9d85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 8px rgba(0, 123, 255, 0.3));
+}
+
+/* ============================================
+   FILTRE
+   ============================================ */
+
+.filter-box {
     margin-bottom: 30px;
 }
 
-/* FILTRE */
-.filter-box {
-    margin-bottom: 25px;
-}
-
 .filter-box select {
-    padding: 10px 15px;
-    border-radius: 10px;
-    border: 2px solid #ff7e5f;
-    background: rgba(255,255,255,0.8);
-    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 126, 95, 0.4);
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.9), rgba(30, 30, 30, 0.85));
+    color: white;
+    font-weight: 600;
+    font-size: 1em;
+    letter-spacing: 0.3px;
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
-/* TABLE */
+.filter-box select:hover {
+    border-color: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.25);
+}
+
+.filter-box select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), 0 8px 24px rgba(0, 123, 255, 0.25);
+}
+
+.filter-box select option {
+    background: #2e2e2e;
+    color: white;
+    font-weight: 500;
+}
+
+/* ============================================
+   TABLEAU
+   ============================================ */
+
 .table-wrapper {
     overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 126, 95, 0.35);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
 }
 
 .leaderboard-table {
     width: 100%;
     border-collapse: collapse;
 
-    background: rgba(44, 44, 44, 0.85);
-    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.92), rgba(30, 30, 30, 0.88));
+    border-radius: 16px;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
     color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
+/* ============================================
+   EN-TÊTE
+   ============================================ */
+
 .leaderboard-table th {
-    background: #ff7e5f;
-    padding: 15px;
-    font-size: 1em;
+    background: linear-gradient(135deg, #ff7e5f, #e96a4f);
+    padding: 16px;
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+    text-align: center;
 }
+
+/* ============================================
+   CORPS
+   ============================================ */
 
 .leaderboard-table td {
     padding: 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 1em;
+    text-align: center;
+    transition: background-color 0.25s ease;
 }
 
-.leaderboard-table tr:hover {
+/* Lignes zebrées subtiles */
+.leaderboard-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Survol */
+.leaderboard-table tbody tr:hover {
+    background: rgba(0, 123, 255, 0.12);
+    box-shadow: inset 3px 0 0 #007bff;
+}
+
+.leaderboard-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ============================================
+   SCORE (centré dans sa colonne)
+   ============================================ */
+
+.leaderboard-table td.score {
+    font-weight: 700;
+    color: #ff9d85;
+    font-size: 1.05em;
+    letter-spacing: 0.3px;
+    text-align: center;
     background: rgba(255, 126, 95, 0.1);
-    transition: 0.2s;
 }
 
-.score {
-    font-weight: bold;
-    color: #ff7e5f;
+.leaderboard-table tbody tr:hover td.score {
+    background: rgba(255, 126, 95, 0.18);
+}
+
+/* ============================================
+   ÉTAT VIDE
+   ============================================ */
+
+.leaderboard-table tbody tr td[colspan] {
+    padding: 45px 20px;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    background: transparent;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media screen and (max-width: 768px) {
+    .leaderboard-container {
+        padding: 40px 12px;
+    }
+
+    .leaderboard-container h1 {
+        font-size: 2em;
+    }
+
+    .filter-box select {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 12px 10px;
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .leaderboard-container {
+        padding: 30px 8px;
+    }
+
+    .leaderboard-container h1 {
+        font-size: 1.6em;
+    }
+
+    .leaderboard-table td.score {
+        font-size: 0.95em;
+    }
 }

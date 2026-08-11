@@ -1,142 +1,371 @@
-/* container */
+/* ============================================
+   PROFIL - Design modernisé
+   ============================================ */
+
+/* =========================
+   CONTENEUR
+========================= */
+
 .profile-container {
     max-width: 1000px;
     margin: auto;
-    padding: 40px 20px;
+    padding: 50px 20px;
     text-align: center;
+    animation: profilFadeIn 0.4s ease forwards;
 }
 
-/* HEADER PROFIL */
+@keyframes profilFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   HEADER PROFIL
+========================= */
+
 .profile-header {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
 
-    margin-bottom: 40px;
+    margin-bottom: 45px;
 }
 
 .avatar img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 3px solid #ff7e5f;
+    border: 3px solid transparent;
+    background: linear-gradient(135deg, #007bff, #ff7e5f) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
     object-fit: cover;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(255, 126, 95, 0.4);
 }
 
 .info h1 {
     margin: 0;
+    font-size: 2.2em;
+    background: linear-gradient(135deg, #4da3ff, #ff9d85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 8px rgba(0, 123, 255, 0.3));
 }
 
-/* STATS */
+.info p {
+    color: black;
+    font-size: 0.95em;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+}
+
+/* =========================
+   STATS
+========================= */
+
 .stats {
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
 }
 
 .card {
-    background: rgba(44, 44, 44, 0.85);
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.92), rgba(30, 30, 30, 0.88));
     color: white;
 
-    padding: 20px;
-    border-radius: 15px;
+    padding: 25px 20px;
+    border-radius: 18px;
 
     min-width: 180px;
 
-    border: 2px solid #ff7e5f;
+    border: 1px solid rgba(255, 126, 95, 0.4);
+    border-top: 3px solid #007bff;
+    border-bottom: 3px solid #ff7e5f;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
 .card h3 {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 1.05em;
+    color: #e8e8e8;
+    letter-spacing: 0.3px;
 }
 
-/* BADGES */
+.card p {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #ff9d85;
+    text-shadow: 0 2px 8px rgba(255, 126, 95, 0.3);
+    margin: 0;
+}
+
+/* =========================
+   TITRE BADGES
+========================= */
+
+.profile-container h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: white;
+    background: linear-gradient(135deg, #4da3ff, #ff9d85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 8px rgba(0, 123, 255, 0.3));
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.profile-container h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff, #ff7e5f);
+    margin: 12px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(255, 126, 95, 0.4);
+}
+
+/* =========================
+   BADGES
+========================= */
+
 .badges {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 25px;
+}
+
+.badges > p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1em;
+    font-style: italic;
+    padding: 30px;
+    background: rgba(44, 44, 44, 0.6);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 126, 95, 0.3);
+    backdrop-filter: blur(8px);
 }
 
 .badge-card {
-    width: 180px;
-    background: rgba(44, 44, 44, 0.85);
+    width: 190px;
+    background: linear-gradient(145deg, rgba(50, 50, 50, 0.92), rgba(35, 35, 35, 0.88));
     color: white;
 
-    padding: 20px;
-    border-radius: 15px;
+    padding: 25px 20px;
+    border-radius: 18px;
 
-    border: 2px solid #ff7e5f;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 126, 95, 0.35);
+    border-top: 3px solid #ff7e5f;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Halo lumineux au survol */
+.badge-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 123, 255, 0.1), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .badge-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transform: translateY(-8px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.badge-card:hover::before {
+    opacity: 1;
 }
 
 .badge-card img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
+    width: 65px;
+    height: 65px;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.badge-card:hover img {
+    transform: scale(1.1);
 }
 
 .badge-card h3 {
     margin: 0 0 8px;
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: white;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .badge-card p {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 12px;
-    line-height: 1.4;
+    margin-bottom: 14px;
+    line-height: 1.5;
 }
 
 /* Pastille de rareté */
 .badge-card span {
     display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 5px 14px;
+    border-radius: 25px;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: capitalize;
-    background: rgba(255, 126, 95, 0.2);
-    color: #ff7e5f;
-    border: 1px solid #ff7e5f;
+    letter-spacing: 0.5px;
+    background: rgba(255, 126, 95, 0.15);
+    color: #ff9d85;
+    border: 1px solid rgba(255, 126, 95, 0.4);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Couleurs par rareté */
+/* =========================
+   RARETÉS
+========================= */
+
+/* Bronze */
 .badge-card.bronze {
-    border-color: #cd7f32;
+    border-top-color: #cd7f32;
 }
 .badge-card.bronze span {
-    background: rgba(205, 127, 50, 0.15);
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.1));
     color: #e0995c;
-    border-color: #cd7f32;
+    border-color: rgba(205, 127, 50, 0.5);
+    box-shadow: 0 2px 8px rgba(205, 127, 50, 0.2);
 }
 
+/* Argent */
 .badge-card.silver {
-    border-color: #c0c0c0;
+    border-top-color: #c0c0c0;
 }
 .badge-card.silver span {
-    background: rgba(192, 192, 192, 0.15);
-    color: #d9d9d9;
-    border-color: #c0c0c0;
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.1));
+    color: #e0e0e0;
+    border-color: rgba(192, 192, 192, 0.5);
+    box-shadow: 0 2px 8px rgba(192, 192, 192, 0.2);
 }
 
+/* Or */
 .badge-card.gold {
-    border-color: #ffd700;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+    border-top-color: #ffd700;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.15);
 }
 .badge-card.gold span {
-    background: rgba(255, 215, 0, 0.15);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
     color: #ffd700;
-    border-color: #ffd700;
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media screen and (max-width: 768px) {
+    .profile-container {
+        padding: 35px 15px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .avatar img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .info h1 {
+        font-size: 1.8em;
+    }
+
+    .card {
+        min-width: 150px;
+        padding: 20px 15px;
+    }
+
+    .card p {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-container {
+        padding: 25px 10px;
+    }
+
+    .avatar img {
+        width: 85px;
+        height: 85px;
+    }
+
+    .info h1 {
+        font-size: 1.5em;
+    }
+
+    .stats {
+        gap: 12px;
+    }
+
+    .card {
+        min-width: 130px;
+        padding: 18px 12px;
+    }
+
+    .card h3 {
+        font-size: 0.9em;
+    }
+
+    .card p {
+        font-size: 1.3em;
+    }
+
+    .profile-container h2 {
+        font-size: 1.6em;
+    }
+
+    .badge-card {
+        width: 160px;
+        padding: 20px 15px;
+    }
 }

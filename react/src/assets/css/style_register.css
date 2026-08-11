@@ -1,24 +1,93 @@
+/* ============================================
+   REGISTER - Design modernisé
+   ============================================ */
+
 .form-container-inscription {
     max-width: 600px;
-    margin: 50px auto;
-    padding: 40px;
-    background-color: rgba(44, 44, 44, 0.8);
-    border-radius: 20px;
-    border: 3px solid #ff7e5f;
+    margin: 60px auto;
+    padding: 45px 40px;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.92), rgba(30, 30, 30, 0.88));
+    border-radius: 24px;
+    border: 1px solid rgba(255, 126, 95, 0.4);
+    border-top: 3px solid #007bff;
+    border-bottom: 3px solid #ff7e5f;
     text-align: center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
     color: white;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    animation: registerFadeIn 0.4s ease forwards;
+}
+
+@keyframes registerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .form-container-inscription h2 {
     margin-bottom: 30px;
-    font-size: 2em;
+    font-size: 2.2em;
     color: white;
+    background: linear-gradient(135deg, #4da3ff, #ff9d85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 8px rgba(0, 123, 255, 0.3));
+    position: relative;
+    padding-bottom: 15px;
 }
 
+.form-container-inscription h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff, #ff7e5f);
+    margin: 12px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(255, 126, 95, 0.4);
+}
+
+/* ============================================
+   MESSAGE D'ERREURS
+   ============================================ */
+
+.message-suppression {
+    background: linear-gradient(135deg, #dc3545, #b02a37);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px auto;
+    width: 85%;
+    max-width: 500px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 18px rgba(220, 53, 69, 0.3);
+    transition: opacity 1s ease-out;
+}
+
+.message-suppression.fade-out {
+    opacity: 0;
+}
+
+.message-suppression p {
+    margin: 5px 0;
+}
+
+/* ============================================
+   FORMULAIRE
+   ============================================ */
+
 .form-group-inscription {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     text-align: left;
     position: relative;
 }
@@ -26,8 +95,10 @@
 .form-group-inscription label {
     display: block;
     margin-bottom: 8px;
-    font-size: 1em;
-    color: white;
+    font-size: 0.95em;
+    color: #e8e8e8;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .form-group-inscription input[type="text"],
@@ -36,90 +107,173 @@
 .form-group-inscription input[type="tel"],
 .form-group-inscription input[type="date"] {
     width: 100%;
-    padding: 12px;
+    padding: 13px 15px;
     font-size: 1em;
-    border: 1px solid #555;
-    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.08);
     color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.form-group-inscription input.error {
-    border: 2px solid red;
-}
-
-.error-icon {
-    color: red;
-    margin-left: 5px;
-    position: absolute;
-    top: 65%;
-    transform: translateY(-50%);
+.form-group-inscription input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .form-group-inscription input:focus {
     border-color: #007bff;
     outline: none;
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2), 0 4px 12px rgba(0, 123, 255, 0.15);
 }
 
+/* État erreur */
+.form-group-inscription input.error {
+    border: 2px solid #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+}
+
+/* Icône d'erreur */
+.error-icon {
+    color: #dc3545;
+    margin-left: 8px;
+    position: absolute;
+    top: 65%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 1.1em;
+    filter: drop-shadow(0 2px 4px rgba(220, 53, 69, 0.4));
+    animation: errorIconIn 0.3s ease forwards;
+}
+
+@keyframes errorIconIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+/* Case à cocher */
 .form-group-inscription input[type="checkbox"] {
     width: auto;
     margin-right: 10px;
+    accent-color: #007bff;
+    transform: scale(1.15);
+    cursor: pointer;
 }
 
 .form-group-inscription label.checkbox-label {
     display: inline;
-    font-size: 1em;
-    color: white;
+    font-size: 0.95em;
+    color: #e8e8e8;
+    line-height: 1.5;
 }
 
 .form-group-inscription a {
-    color: #007bff;
+    color: #4da3ff;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .form-group-inscription a:hover {
-    border-bottom: 1px solid;
+    color: #ff9d85;
 }
 
+/* ============================================
+   BOUTON
+   ============================================ */
+
 .form-button-inscription {
-    padding: 12px 24px;
-    font-size: 1em;
+    padding: 14px 24px;
+    font-size: 1.05em;
+    font-weight: 600;
+    letter-spacing: 0.3px;
     color: white;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     width: 100%;
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.35);
+    margin-top: 5px;
 }
 
 .form-button-inscription:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #1a8aff, #0066cc);
+    box-shadow: 0 10px 28px rgba(0, 123, 255, 0.5);
+    transform: translateY(-2px);
 }
 
-.message-suppression {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 500px;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: opacity 1s ease-out;
+.form-button-inscription:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
 }
-.message-suppression.fade-out {
-    opacity: 0;
+
+/* ============================================
+   LIEN CONNEXION
+   ============================================ */
+
+.form-container-inscription > p {
+    color: #cccccc;
+    font-size: 0.95em;
 }
 
 .lien-connexion {
     text-decoration: none;
-    color: #007bff;
+    color: #4da3ff;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.lien-connexion::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #007bff, #ff7e5f);
+    border-radius: 2px;
+    transition: width 0.3s ease;
 }
 
 .lien-connexion:hover {
-    border-bottom: 1px solid;
+    color: #ff9d85;
+}
+
+.lien-connexion:hover::after {
+    width: 100%;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+    .form-container-inscription {
+        margin: 40px 15px;
+        padding: 35px 25px;
+    }
+
+    .form-container-inscription h2 {
+        font-size: 1.8em;
+    }
+
+    .form-button-inscription {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    .error-icon {
+        right: 10px;
+    }
 }
