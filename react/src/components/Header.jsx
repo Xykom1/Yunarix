@@ -74,7 +74,6 @@ function Header() {
                                     <ul className="dropdown-content" id="dropdown-menu">
                                         <li><Link to="/profil">Mon profil</Link></li>
                                         <li><Link to="/badge">Mes badges</Link></li>
-                                        <li><Link to="/defis">Mes défis</Link></li>
                                         <li>
                                             <button
                                                 className="logout-button"
