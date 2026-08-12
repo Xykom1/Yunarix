@@ -26,6 +26,61 @@ try {
         : 0;
 
 
+    // Détecte si le jeu sélectionné est un jeu de type "puzzle"
+    // (ses scores sont stockés dans puzzle_scores, pas dans scores)
+    $isPuzzle = false;
+
+    if ($game_id > 0) {
+
+        $checkStmt = $pdo->prepare("
+            SELECT 1
+            FROM puzzles
+            WHERE jeu_id = ?
+            LIMIT 1
+        ");
+
+        $checkStmt->execute([$game_id]);
+
+        $isPuzzle = (bool) $checkStmt->fetchColumn();
+
+    }
+
+
+    if ($isPuzzle) {
+
+        // Classement du jeu puzzle : meilleur score + meilleur temps
+        $stmt = $pdo->prepare("
+            SELECT 
+                u.pseudo,
+                MAX(ps.score) AS best_score,
+                MIN(ps.temps) AS meilleur_temps
+            FROM puzzle_scores ps
+            JOIN utilisateurs u 
+                ON u.id = ps.utilisateur_id
+            JOIN puzzles p 
+                ON p.id = ps.puzzle_id
+            WHERE p.jeu_id = ?
+            GROUP BY u.id
+            ORDER BY best_score DESC
+            LIMIT 10
+        ");
+
+        $stmt->execute([$game_id]);
+
+        $classement = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        echo json_encode([
+            "success" => true,
+            "jeux" => $jeux,
+            "type" => "puzzle",
+            "classement" => $classement
+        ]);
+
+        exit();
+
+    }
+
+
     if ($game_id > 0) {
 
         $stmt = $pdo->prepare("
@@ -68,6 +123,7 @@ try {
     echo json_encode([
         "success" => true,
         "jeux" => $jeux,
+        "type" => "quiz",
         "classement" => $classement
     ]);
 

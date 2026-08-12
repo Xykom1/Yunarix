@@ -12,14 +12,9 @@ function GamesPreview({ gamesRef }) {
                         <Link to="/quiz" className="btn-secondary">Jouer</Link>
                     </div>
                     <div className="game-card">
-                        <h3>🎵 Blind Test Anime</h3>
-                        <p>Reconnais les musiques d'animes en quelques secondes. As-tu l'oreille d’un vrai fan ?</p>
-                        <Link to="/blindTest" className="btn-secondary">Jouer</Link>
-                    </div>
-                    <div className="game-card">
-                        <h3>⚔️ Mini-RPG Pixel</h3>
-                        <p>Pars à l’aventure dans un monde en pixel art peuplé de références geek et otaku !</p>
-                        <Link to="/rpg" className="btn-secondary">Jouer</Link>
+                        <h3>⚔️ Puzzle style Manga</h3>
+                        <p>Essaye de résoudre des puzzle de différents personnages ayant un style Manga ! </p>
+                        <Link to="/puzzle" className="btn-secondary">Jouer</Link>
                     </div>
                 </div>
             </div>

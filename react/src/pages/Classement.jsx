@@ -3,18 +3,54 @@ import { getClassement } from "../services/classementApi";
 import "../assets/css/style_classement.css";
 
 
+function formatTemps(secondes) {
+
+    if (secondes === null || secondes === undefined) {
+        return "-";
+    }
+
+    const m = Math.floor(secondes / 60);
+    const s = secondes % 60;
+
+    return `${m}:${String(s).padStart(2, "0")}`;
+
+}
+
+
 function Classement() {
 
     const [jeux, setJeux] = useState([]);
     const [classement, setClassement] = useState([]);
     const [gameId, setGameId] = useState(0);
+    const [type, setType] = useState("quiz");
 
 
     useEffect(() => {
 
-        loadClassement();
+        if (gameId !== 0) {
+            loadClassement();
+        }
 
     }, [gameId]);
+
+
+    useEffect(() => {
+
+        loadJeux();
+
+    }, []);
+
+
+    async function loadJeux() {
+
+        const data = await getClassement(0);
+
+        if (data.success && data.jeux.length > 0) {
+            setJeux(data.jeux);
+            setGameId(data.jeux[0].id);
+        }
+
+    }
 
 
     async function loadClassement() {
@@ -22,8 +58,8 @@ function Classement() {
         const data = await getClassement(gameId);
 
         if (data.success) {
-            setJeux(data.jeux);
             setClassement(data.classement);
+            setType(data.type ?? "quiz");
         }
 
     }
@@ -40,12 +76,8 @@ function Classement() {
 
                 <select
                     value={gameId}
-                    onChange={(e) => setGameId(e.target.value)}
+                    onChange={(e) => setGameId(Number(e.target.value))}
                 >
-
-                    <option value="0">
-                        🌐 Tous les jeux
-                    </option>
 
                     {jeux.map((jeu) => (
 
@@ -72,7 +104,7 @@ function Classement() {
                             <th>#</th>
                             <th>Joueur</th>
                             <th>Score</th>
-                            <th>Total</th>
+                            <th>{type === "puzzle" ? "Meilleur temps" : "Total"}</th>
                         </tr>
                     </thead>
 
@@ -107,7 +139,9 @@ function Classement() {
                                 </td>
 
                                 <td>
-                                    {row.total}
+                                    {type === "puzzle"
+                                        ? formatTemps(row.meilleur_temps)
+                                        : row.total}
                                 </td>
 
                             </tr>

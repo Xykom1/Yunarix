@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Profil from "./pages/Profil";
 import Classement from "./pages/Classement";
 import Quiz from "./pages/Quiz";
+import Puzzle from "./pages/Puzzle";
 import CGU from "./pages/CGU";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -48,6 +49,7 @@ function App() {
             />
             <Route path="/classement" element={<Classement />} />
             <Route path="/quiz" element={<Quiz />} />
+            <Route path="/puzzle" element={<Puzzle />} />
             <Route path="/cgu" element={<CGU />} />
             <Route
               path="/politiqueConfidentialite"
