@@ -44,7 +44,7 @@ function Profil() {
     }
 
 
-    const { user, stats, badges } = profile;
+    const { user, stats } = profile;
 
 
     return (
@@ -95,49 +95,6 @@ function Profil() {
                         {Number(stats.avg_score ?? 0).toFixed(1)}
                     </p>
                 </div>
-
-            </div>
-
-
-            {/* BADGES */}
-            <h2>🏅 Mes badges</h2>
-
-            <div className="badges">
-
-                {
-                    badges.length === 0 ? (
-
-                        <p>Aucun badge obtenu pour le moment.</p>
-
-                    ) : (
-
-                        badges.map((badge) => (
-
-                            <div
-                                key={badge.id}
-                                className={`badge-card ${badge.rarete}`}
-                            >
-                                <img
-                                    src={`/src/assets/images/badges/${badge.rarete}_medal.png`}
-                                    alt={badge.rarete}
-                                />
-
-                                <h3>{badge.nom}</h3>
-
-                                <p>
-                                    {badge.description}
-                                </p>
-
-                                <span>
-                                    {badge.rarete}
-                                </span>
-
-                            </div>
-
-                        ))
-
-                    )
-                }
 
             </div>
 

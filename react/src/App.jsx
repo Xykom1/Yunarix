@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profil from "./pages/Profil";
+import Badges from "./pages/Badges";
 import Classement from "./pages/Classement";
 import Quiz from "./pages/Quiz";
 import Puzzle from "./pages/Puzzle";
@@ -44,6 +45,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Profil />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/badge"
+              element={
+                <ProtectedRoute>
+                  <Badges />
                 </ProtectedRoute>
               }
             />
